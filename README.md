@@ -4,6 +4,8 @@
 
 An employee tracker to keep tabs on your employees, roles and departments
 
+Video of usage: https://github.com/MichaelW1996/EmployeeTracker
+
 ## Contents
 
 -[Description](#Description)  
