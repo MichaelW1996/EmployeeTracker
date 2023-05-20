@@ -25,7 +25,7 @@ const deptView = (queryPrompt) => {
 };
 const roleView = (queryPrompt) => {
   db.query(
-    `SELECT  role.role_id AS 'ID', role.role_title AS 'Title', dept.dept_name AS 'Department', role.role_salary AS 'Salary' FROM role JOIN dept ON role.dept_id = dept.dept_id`,
+    `SELECT role.role_id AS 'ID', role.role_title AS 'Title', dept.dept_name AS 'Department', role.role_salary AS 'Salary' FROM role JOIN dept ON role.dept_id = dept.dept_id`,
     (err, result) => {
       if (err) throw err;
       // Adds space from previous query to make easier to read
