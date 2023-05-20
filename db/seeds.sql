@@ -1,3 +1,4 @@
+--example data for testing purposes
 INSERT INTO dept (dept_name)
 VALUES ("PLANNING"),
        ("LAND"),
