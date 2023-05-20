@@ -1,23 +1,24 @@
-const { prompt } = require("inquirer");
-const dbfunction = require("./helpers/dbquery.js");
-const db = require("./config/connection.js");
+const { prompt } = require("inquirer"); //require the prompt function from inquirer to allow the program to ask the user questions
+const dbfunction = require("./helpers/dbquery.js"); // bring in my functions to make queries based on the prompt answer
+const db = require("./config/connection.js"); //get the connection info to allow us to connect to database
 
 db.connect((err) => {
+  //make a connection to the db
   if (err) {
     console.log(err);
-    return "Couldn't connect to the database";
+    return "Couldn't connect to the database"; //if we cant connect, tell the user that we couldnt connect and log the error for troubleshooting
   }
-  queryPrompt();
+  queryPrompt(); //ask the user what they want to do if connection is successful
 });
-
-//something to print horizontal lines with text for employee database
 
 const queryPrompt = () => {
   prompt({
+    //ask the user what they want to do
     name: "QueryList",
     type: "list",
     message: "What would you like to do?",
     choices: [
+      //all the functions possible with the program
       "View departments",
       "View roles",
       "View employees",
@@ -34,10 +35,11 @@ const queryPrompt = () => {
       "Exit",
     ],
   }).then((answers) => {
+    //uses a switch - case function to proceed based on the answer from the prompt
     switch (answers.QueryList) {
-      case "View departments":
-        dbfunction.deptView(queryPrompt);
-        break;
+      case "View departments": //if user selected X
+        dbfunction.deptView(queryPrompt); //initialise the related function from the helper, and pass in the queryPrompt- this allows the query prompt to be called again without both files requiring eachother - this caused issues in development
+        break; //end of case
       case "View roles":
         dbfunction.roleView(queryPrompt);
         break;
@@ -80,5 +82,3 @@ const queryPrompt = () => {
     }
   });
 };
-
-module.exports = queryPrompt;
